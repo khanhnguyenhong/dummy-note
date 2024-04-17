@@ -1,0 +1,27 @@
+{
+  "name": "dummy-note",
+  "version": "1.0.0",
+  "description": "A personal app to manage notes",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khanhnguyenhong/dummy-note.git"
+  },
+  "keywords": [
+    "note",
+    "personal"
+  ],
+  "author": "Khanh Nguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/khanhnguyenhong/dummy-note/issues"
+  },
+  "homepage": "https://github.com/khanhnguyenhong/dummy-note#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
