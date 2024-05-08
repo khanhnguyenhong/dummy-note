@@ -1,0 +1,20 @@
+<p>my-drive works!</p>
+<button (click)="refreshToken()">RefreshToken</button>
+<button (click)="getToken()">GetToken</button>
+<button (click)="getGoogleDriveData()">getGoogleDriveData</button>
+<button (click)="loadNextPage()">loadNextPage</button>
+<input [(ngModel)]="fileId" />
+<button (click)="getFileData()">loadFile</button>
+
+<textarea [(ngModel)]="result"></textarea>
+
+<div>
+  <ul>
+    <li *ngFor="let file of files">
+      <span>{{ file.name }} </span>
+      <span>{{ file.mimeType }}</span>
+      <span>{{ file.id }}</span>
+      <button (click)="setFileId(file.id)">set file id</button>
+    </li>
+  </ul>
+</div>

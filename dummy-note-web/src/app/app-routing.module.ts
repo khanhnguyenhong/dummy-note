@@ -1,10 +1,29 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { mapToCanActivate, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './core/guards/auth-guard';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('./modules/menu/menu.module').then((m) => m.MenuModule),
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./modules/login/login.module').then((m) => m.LoginModule),
+  },
+  {
+    path: 'drive',
+    canActivate: mapToCanActivate([AuthGuard]),
+    loadChildren: () =>
+      import('./modules/my-drive/my-drive.module').then((m) => m.MyDriveModule),
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

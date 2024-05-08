@@ -1,0 +1,10 @@
+<div *ngIf="!isLoggedIn">
+  <h2>Please login</h2>
+  <asl-google-signin-button
+    type="icon"
+    size="medium"
+  ></asl-google-signin-button>
+</div>
+<div *ngIf="isLoggedIn">
+  <h2>Logged In</h2>
+</div>
