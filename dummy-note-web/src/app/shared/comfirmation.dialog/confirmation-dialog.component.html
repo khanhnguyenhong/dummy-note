@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content>
+  <p>{{content}}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="dialogRef.close(false)">Nope</button>
+  <button mat-button (click)="dialogRef.close(true)" cdkFocusInitial>
+    Yupp
+  </button>
+</mat-dialog-actions>

@@ -20,6 +20,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/my-drive/my-drive.module').then((m) => m.MyDriveModule),
   },
+  {
+    path: 'note',
+    loadChildren: () =>
+      import('./modules/note-board/note-board.module').then(
+        (m) => m.NoteBoardModule,
+      ),
+  },
 ];
 
 @NgModule({

@@ -21,7 +21,7 @@
 
       <mat-drawer #drawer mode="over" position="start">
         <mat-list>
-          <mat-list-item *ngFor="let item of menuItem">
+          <mat-list-item *ngFor="let item of menuItem" [routerLink]="item.route" style="cursor: pointer">
             {{item.label}}
           </mat-list-item>
         </mat-list>

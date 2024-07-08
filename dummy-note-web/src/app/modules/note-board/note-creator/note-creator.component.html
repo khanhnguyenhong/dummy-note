@@ -1,0 +1,112 @@
+<div [formGroup]="noteForm" class="note-creator-container">
+  <div mat-dialog-title>
+    <mat-form-field fxFlexFill>
+      <input matInput placeholder="Title" formControlName="title" />
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-content fxLayout="column">
+    <mat-form-field>
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="type">
+        <mat-option *ngFor="let o of options" [value]="o.value">
+          {{ o.label }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field fxFlexFill>
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        placeholder="Description"
+        formControlName="description"
+        rows="5"
+      ></textarea>
+    </mat-form-field>
+
+    <div fxLayout="row" fxLayoutGap="8px">
+      <mat-form-field>
+        <mat-label>Urgency</mat-label>
+        <input
+          matInput
+          placeholder="Urgency"
+          formControlName="urgency"
+          type="number"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Value</mat-label>
+        <input
+          matInput
+          placeholder="Value"
+          formControlName="value"
+          type="number"
+        />
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="8px">
+      <mat-form-field>
+        <mat-label>Current Review</mat-label>
+        <input
+          matInput
+          (click)="picker.open()"
+          [matDatepicker]="picker"
+          formControlName="currentReview"
+          required
+          readonly
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <div fxLayoutAlign="center center">
+        <button mat-raised-button (click)="setReviewToday()">Today</button>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="8px">
+      <mat-form-field>
+        <mat-label>Next Review</mat-label>
+        <input
+          matInput
+          (click)="picker2.open()"
+          [matDatepicker]="picker2"
+          formControlName="nextReview"
+          required
+          readonly
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker2"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+
+      <div fxLayoutAlign="center center">
+        <button mat-raised-button (click)="setNextReviewPlus(1)">+1</button>
+        <button mat-raised-button (click)="setNextReviewPlus(5)">+5</button>
+        <button mat-raised-button (click)="setNextReviewPlus(10)">+10</button>
+      </div>
+    </div>
+  </div>
+
+  <div
+    mat-dialog-actions
+    fxLayoutAlign="end center"
+    class="note-creator-action-container"
+  >
+    <button mat-raised-button (click)="matDialogRef.close()">Cancel</button>
+    <button
+      mat-raised-button
+      *ngIf="showDelete"
+      color="warn"
+      (click)="deleteNote()"
+    >
+      Delete
+    </button>
+    <button mat-raised-button color="primary" (click)="saveNote()">Save</button>
+  </div>
+</div>

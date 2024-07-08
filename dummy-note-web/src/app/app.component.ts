@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SocialAuthService } from '@abacritt/angularx-social-login';
+import { SocialAuthService } from "@abacritt/angularx-social-login";
 import { SocialUser } from '@abacritt/angularx-social-login';
 import { AuthService } from './core/services/auth-service';
 
@@ -17,8 +17,8 @@ export class AppComponent implements OnInit {
       route: 'login',
     },
     {
-      label: 'Notes',
-      route: 'notes',
+      label: 'Note',
+      route: 'note',
     },
   ];
 

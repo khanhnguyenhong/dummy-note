@@ -1,0 +1,79 @@
+app-note-board {
+  .note-board-container {
+    padding: 7px;
+
+    .all-note-container {
+      padding: 7px 7px 14px;
+      border-radius: 2px;
+      border: 1px solid #ddd;
+      background-color: white;
+      margin-right: 10px;
+
+      .action-btn {
+        margin-bottom: 4px;
+      }
+    }
+
+    .learning-process-container {
+      padding: 7px;
+      border-radius: 2px;
+      border: 1px solid #ddd;
+      background-color: white;
+      overflow: auto;
+
+      .overdue-process-container {
+        overflow: auto;
+        background-color: indianred;
+        padding: 7px;
+      }
+
+      .current-process-container {
+        overflow: auto;
+        background-color: lightseagreen;
+        padding: 7px;
+      }
+
+      .future-process-container {
+        overflow: auto;
+        background-color: cornflowerblue;
+        padding: 7px;
+      }
+
+      .other-process-container {
+        overflow: auto;
+        border: 1px solid #ddd;
+        margin-top: 7px;
+        padding: 7px;
+      }
+
+      .learning-note-item {
+        margin-right: 4px;
+        padding: 2px 4px;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        cursor: pointer;
+        background-color: rgba(255,255,255,.7);
+
+        pre {
+          max-width: 200px;
+          overflow: auto;
+        }
+      }
+    }
+
+    .note-item {
+      margin-top: 4px;
+      padding: 2px 4px;
+      border: 1px solid #ddd;
+      cursor: pointer;
+    }
+
+    .add-btn {
+      color: forestgreen;
+      cursor: pointer;
+      border: 1px lightseagreen solid;
+      border-radius: 25%;
+      padding: 0 5px;
+    }
+  }
+}

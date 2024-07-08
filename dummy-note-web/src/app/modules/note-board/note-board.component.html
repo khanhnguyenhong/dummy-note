@@ -1,0 +1,81 @@
+<div fxLayout="row" class="note-board-container">
+  <div
+    fxLayout="column"
+    fxFlex="1 1 200px"
+    fxShow
+    fxHide.lt-md
+    class="all-note-container"
+  >
+    <h3>All Notes</h3>
+
+    <div>
+      <button class="action-btn" mat-flat-button color="primary" (click)="createNote()">
+        Create Note
+      </button>
+      <button class="action-btn" mat-flat-button color="primary" (click)="importNotes()">
+        Import Note
+      </button>
+      <button class="action-btn" mat-flat-button color="primary" (click)="exportNotes()">
+        Export Note
+      </button>
+    </div>
+    <div>
+      <div
+        class="note-item"
+        *ngFor="let note of noteList"
+        (click)="editNote(note)"
+      >
+        {{ note.title }}
+      </div>
+    </div>
+  </div>
+
+  <div fxLayout="column" fxFlex="1 1 auto" class="learning-process-container">
+    <h3>
+      Learning Reminder
+      <span class="add-btn" (click)="createLearningNote()"> + </span>
+    </h3>
+    <div class="overdue-process-container" fxLayout="row">
+      <div
+        class="learning-note-item"
+        *ngFor="let note of overdueNotes"
+        (click)="editNote(note)"
+      >
+        {{ note.title }}
+      </div>
+    </div>
+    <div class="current-process-container" fxLayout="row">
+      <div
+        class="learning-note-item"
+        *ngFor="let note of currentNotes"
+        (click)="editNote(note)"
+      >
+        {{ note.title }}
+      </div>
+    </div>
+    <div class="future-process-container" fxLayout="row">
+      <div
+        class="learning-note-item"
+        *ngFor="let note of futureNotes"
+        (click)="editNote(note)"
+      >
+        {{ note.title }}
+      </div>
+    </div>
+    <div class="other-process-container" fxLayout="row">
+      <div
+        class="learning-note-item"
+        *ngFor="let note of otherNotes"
+        (click)="editNote(note)"
+        fxLayout="column"
+      >
+        <div>
+          <b>{{ note.title }}</b>
+        </div>
+        <div>
+          <pre>{{ note.description }}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

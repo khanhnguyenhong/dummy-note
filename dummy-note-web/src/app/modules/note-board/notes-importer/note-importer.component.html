@@ -1,0 +1,15 @@
+<div class="import-container">
+  <div mat-dialog-content fxLayout="column">
+    <textarea [(ngModel)]="boardContent" rows="10"> </textarea>
+  </div>
+
+  <div mat-dialog-actions fxLayoutAlign="end center" class="action-container">
+    <button mat-raised-button color="primary" (click)="copyText()">
+      Copy Text
+    </button>
+    <button mat-raised-button color="primary" (click)="importNoteFromString()">
+      Import
+    </button>
+    <button mat-raised-button (click)="matDialogRef.close()">Cancel</button>
+  </div>
+</div>

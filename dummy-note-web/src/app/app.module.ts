@@ -1,12 +1,10 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {
-  GoogleLoginProvider,
   GoogleSigninButtonModule,
-  SocialAuthServiceConfig,
   SocialLoginModule,
 } from '@abacritt/angularx-social-login';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,45 +13,49 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { FlexModule } from '@angular/flex-layout';
 import { MatListModule } from '@angular/material/list';
+import { SocialLoginService } from './core/services/social-login-service';
+import { HttpClientModule } from '@angular/common/http';
+import { MatNativeDateModule } from "@angular/material/core";
+import { ConfirmationDialogComponent } from './shared/comfirmation.dialog/confirmation-dialog.component';
+import { MatDialogModule } from "@angular/material/dialog";
+
+export function AppConfigServiceFactory(
+  configService: SocialLoginService,
+): () => void {
+  return async () => await configService.load();
+}
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ConfirmationDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SocialLoginModule,
     GoogleSigninButtonModule,
     BrowserAnimationsModule,
+    FlexModule,
+    HttpClientModule,
+
     MatButtonModule,
     MatIconModule,
     MatSidenavModule,
-    FlexModule,
     MatListModule,
+    MatNativeDateModule,
+    MatDialogModule,
   ],
   providers: [
     {
+      provide: APP_INITIALIZER,
+      useFactory: AppConfigServiceFactory,
+      deps: [SocialLoginService],
+      multi: true,
+    },
+    {
       provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: false,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              '896236796991-80hlpm7pmpaskh7r224p6slggpel6tm2.apps.googleusercontent.com',
-              {
-                oneTapEnabled: false,
-                scopes: [
-                  'https://www.googleapis.com/auth/drive',
-                  'https://www.googleapis.com/auth/drive.activity',
-                ],
-              },
-            ),
-          },
-        ],
-        onError: (err) => {
-          console.error(err);
-        },
-      } as SocialAuthServiceConfig,
+      useValue: new Promise(async (resolve) => {
+        const config = await SocialLoginService.fetchConfig();
+        resolve(config);
+      }),
     },
   ],
   bootstrap: [AppComponent],
