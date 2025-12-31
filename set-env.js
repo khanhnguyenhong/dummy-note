@@ -4,36 +4,18 @@ const dotenv = require('dotenv');
 // Load environment variables from .env file
 dotenv.config();
 
-const targetPath = `./src/environments/environment.ts`;
-const targetPathProd = `./src/environments/environment.prod.ts`;
+const targetPath = `./src/assets/config.json`;
 
-// Environment file content
-const envConfigFile = `export const environment = {
-  production: false,
-  clientId: '${process.env.CLIENT_ID || ''}',
-  clientSecret: '${process.env.CLIENT_SECRET || ''}'
-};
-`;
+// Config file content
+const configContent = JSON.stringify({
+  clientId: process.env.CLIENT_ID || ''
+}, null, 2);
 
-const envConfigFileProd = `export const environment = {
-  production: true,
-  clientId: '${process.env.CLIENT_ID || ''}',
-  clientSecret: '${process.env.CLIENT_SECRET || ''}'
-};
-`;
+console.log('Generating runtime configuration file...');
 
-console.log('Generating environment files...');
-
-fs.writeFile(targetPath, envConfigFile, function (err) {
+fs.writeFile(targetPath, configContent, function (err) {
   if (err) {
     console.error(err);
   }
   console.log(`Output generated at ${targetPath}`);
-});
-
-fs.writeFile(targetPathProd, envConfigFileProd, function (err) {
-  if (err) {
-    console.error(err);
-  }
-  console.log(`Output generated at ${targetPathProd}`);
 });
